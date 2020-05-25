@@ -1,24 +1,21 @@
-var supertest = require("supertest");
-var should = require("should");
+var base_url = "http://localhost:3000";
 
-// This agent refers to PORT where the program is running.
+var expect = require("chai").expect;
+var request = require("request");
 
-var server = supertest.agent("http://localhost:4000");
-
-// UNIT test begin
-
-describe("SAMPLE unit test", function () {
-  // #1 should return home page
-  it("should return home page", function (done) {
-    // calling home page
-    server
-      .get("/")
-      .expect("Content-type", /text/)
-      .expect(200) // THis is HTTP response
-      .end(function (err, res) {
-        // HTTP status should be 200
-        res.status.should.equal(200);
+describe("Sample Server", function () {
+  describe("GET /", function () {
+    it("Main page content", function (done) {
+      request(base_url, function (error, response, body) {
+        expect(body).to.equal("Hello World");
         done();
       });
+    });
+    it("Main page status", function (done) {
+      request(base_url, function (error, response, body) {
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
   });
 });
