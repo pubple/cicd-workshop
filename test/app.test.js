@@ -18,4 +18,18 @@ describe("Sample Server", function () {
       });
     });
   });
+  describe("GET /about", function () {
+    it("About page status", function (done) {
+      request(base_url + "/about", function (error, response, body) {
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
+    });
+    it("About page content", function (done) {
+      request(base_url + "/about", function (error, response, body) {
+        expect(body).to.equal("About us");
+        done();
+      });
+    });
+  });
 });
