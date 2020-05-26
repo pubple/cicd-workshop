@@ -27,7 +27,13 @@ describe("Sample Server", function () {
     });
     it("About page content", function (done) {
       request(base_url + "/about", function (error, response, body) {
-        expect(body).to.equal("About us");
+        expect(body).to.equal("About Vivas");
+        done();
+      });
+    });
+    it("About page content", function (done) {
+      request(base_url + "/intro", function (error, response, body) {
+        expect(body).to.equal("Introduction of Vivas");
         done();
       });
     });
